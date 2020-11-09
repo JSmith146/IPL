@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{%block body%}
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="card card-body">
+            <h1 style="text-align: center;">Create New Project</h1>
+        </div>
+    </div>
+    
+    <br>
+    <form action="/new_project" method="post" class="bootstrap4">
+        {% csrf_token %}
+        {%for field in form %}
+        <div class="form-group row">
+            {{field.errors}}
+            <label for="id_{{ field.name }}" class="col-3 col-form-label"> {{field.label}}</label>
+            <div class="col-9">
+                {{ field }}
+            </div>
+        </div>
+
+        {% endfor%}
+        
+        <button type="submit" class="btn peach-gradient" name="button">Create</button>
+    </form>
+</div>
+{%endblock body%}

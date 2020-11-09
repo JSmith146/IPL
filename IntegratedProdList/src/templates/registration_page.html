@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<section class = "p-5 text-center">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- Default form login -->
+    <!-- Default form register -->
+    <div class="col-md-6 mx-auto">
+    <div class="card card-body">
+    <form class="text-center p-5" action="/register" method="post">
+        {% csrf_token %}
+        <img src="{% static 'img/emblem.png' %}" alt="" class="logo">
+        <p class="h2 mb-6">Register</p>
+
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- First name -->
+                <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name"
+                    name="first_name">
+            </div>
+            <div class="col">
+                <!-- Last name -->
+                <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name"
+                    name="last_name">
+            </div>
+        </div>
+
+        <!-- E-mail -->
+        <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" name="email">
+
+        <!-- Password -->
+        <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
+            aria-describedby="defaultRegisterFormPasswordHelpBlock" name="password">
+            <br>
+        <!-- Confirm Password -->
+        <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Confirm"
+            aria-describedby="defaultRegisterFormPasswordHelpBlock" name="confirm">
+
+
+
+        <!-- Sign up button -->
+        <button class="btn peach-gradient my-4 btn-block" type="submit">Register</button>
+
+
+        <!-- Register -->
+        <p>Already a member?</p>
+        <a href="/">Log-In</a>
+        </p>
+    </form>
+</div>
+</div>
+    <!-- Default form register -->
+
+</section>
+{% endblock body %}

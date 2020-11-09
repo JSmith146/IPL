@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- ACN icon -->
+  <link rel="icon" href="{% static 'img/emblem.png'%} " type="image/x-icon">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/mdb.min.css'%}">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/my-styles.css' %}">
+  
+  <title>ACN Production</title>
+</head>
+
+<body>
+
+  <div class="sidenav">
+    <img src="{% static 'img/emblem.png' %}" alt="" id="logo">
+    <a href="/all_projects">Home</a>
+    <a href="/new_project">New Project</a>
+    <button class="dropdown-btn">Flight Review
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="/flight/ACNA">ACNA</a>
+      <a href="/flight/ACNI">ACNI</a>
+      <a href="/flight/ACNL">ACNL</a>
+      <a href="/flight/ACNQ">ACNQ</a>
+      <a href="/flight/ACNS">ACNS</a>
+      <a href="/flight/ACNW">ACNW</a>
+    </div>
+    <a href="#">Dashboard</a>
+  </div>
+
+  <!-- top navigation -->
+  <div class="topnav">
+    <div class="topnav-right">
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+
+  <!-- /top navigation  -->
+
+  <div class="main">
+    {% block body %}
+
+    {% endblock body %}
+  </div>
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <!-- Plugin file -->
+  <script src="{% static 'js/addons/datatables.min.js' %}"></script>
+  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript" src="{% static 'js/myjs.js'%}"></script>
+  
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#ipp-table').DataTable({
+        "scrollY": "400px",
+        "scrollCollapse": true,
+      });
+      $('.dataTables_length').addClass('bs-select');
+    });
+  </script>
+
+  <script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+django==2.2
+django-import-export
+bcrypt
+pandas
+numpy

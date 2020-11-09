@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+{%block body%}
+<br>
+<div class="container-fluid">
+    <h1 style="text-align: center;">{{flight_name}}</h1>
+    <h2 style="text-align: center;">{{flight_title}}</h2>
+    <div class="row">
+        <div class="col">
+            <div class="card card-body filter">
+                <form action="" method="get">
+                    {{myFilter.form}}
+                    <button class="btn peach-gradient" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <table id="flight-table" class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th>NOD</th>
+                            <th>Mission Line</th>
+                            <th>Project Title</th>
+                            <th>Status</th>
+                            <th>Lead Office</th>
+                            <th>Project Lead</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for project in flight_projects %}
+                        <tr>
+                            <td>{{project.nod_problem}}</td>
+                            <td>{{project.mission_line}}</td>
+                            <td>{{project.project_title}}</td>
+                            <td>{{project.project_status}}</td>
+                            <td>{{project.lead_office}}</td>
+                            <td>{{project.project_lead}}</td>
+                            <td>{{project.project_start_date}}</td>
+                            <td>{{project.project_due_date}}</td>
+                            <td>
+                                <div class="button-group">
+                                    <a href="/project/{{project.id}}" class="btn btn-primary btn-sm" role="button">View</a>
+                                    <a href="/project/{{project.id}}/edit" class="btn peach-gradient btn-sm" role="button">Edit</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock body%}

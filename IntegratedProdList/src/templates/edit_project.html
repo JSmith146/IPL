@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{%block body%}
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="card card-body">
+            <h1 style="text-align: center;">Edit Project</h1>
+        </div>
+    </div>
+    <br>
+    <form action="/project/{{project.id}}/edit" method="post">
+        {% csrf_token %}
+        {%for field in form %}
+        <div class="form-group row">
+            <label for="id_{{ field.name }}" class="col-3 col-form-label"> {{field.label}}</label>
+            <div class="col-9">
+                {{ field }}
+            </div>
+        </div>
+
+        {% endfor%}
+
+        <button type="submit" class="btn peach-gradient edit" name="button" >Edit Project</button>
+    </form>
+</div>
+{%endblock body%}

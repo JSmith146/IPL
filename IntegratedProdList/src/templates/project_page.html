@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+
+{%block body%}
+<br>
+<div class="container-fluid">
+    <br>
+    <div style="text-align: center;" class="project-info-head">
+        <h2>{{project.project_title}}</h2>
+        <h3>{{project.nod_problem}} | {{project.mission_line}}</h3>
+
+        <a href="/project/{{project.id}}/edit"><button id="edit-button" class="btn peach-gradient edit">Edit</button></a>
+    </div>
+    <br>
+    <div class="project-info-body row">
+        <div class="col-8">
+            <div class="card card-body">
+                <h3>Status: {{project.project_status}}</h3>
+                <br>
+                <h3>Project Lead: {{project.project_lead}}</h3>
+                <br>
+                <h3>Lead Office: {{project.lead_office}}</h3>
+                <br>
+                <h3>Start Date: {{project.project_start_date}}</h3>
+                <br>
+                <h3>Due Date: {{project.project_due_date}}</h3>
+                <br>
+                <h3>Analytic Intent:</h3>
+                <h5>{{project.analytic_intent}}</h5>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card card-body">
+                <h4 style="text-align: center;">Comments</h4>
+                {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+                <form action="/project/{{project.id}}/add_comment" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="comment" id="comments" class="form-control">
+                        <!-- <textarea name="comment" id="comment" class="form-control" cols="30" rows="1"></textarea> -->
+                        <button type="submit" class="btn btn-sm peach-gradient float-right">Add</button>
+                    </div>
+                </form>
+                {% for comment in comments %}
+                    <p class="note note-light">
+                        {{comment.content}}
+                    </p>
+                    <p style="text-align: right; font-size: small;" class="text-muted">
+                        {{comment.created_at|date:'M d, Y'}}
+                    </p>
+                {% endfor %}
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+{%endblock body%}
