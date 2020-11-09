@@ -1,4 +1,5 @@
 django == 2.2
-django-excel
-pyexcel-xls
-pyexcel-xlsx
+django-import-export
+bcrypt
+pandas
+django-filter
